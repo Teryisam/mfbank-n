@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.938c708b.css",
+    "main.js": "/static/js/main.81be2176.js",
+    "static/media/Logo.png": "/static/media/Logo.cbe92537e7cc63f83ae4.png",
+    "static/media/NQRBackground-cmfb.jpg": "/static/media/NQRBackground-cmfb.3c2cfe373542893ea463.jpg",
+    "index.html": "/index.html",
+    "main.938c708b.css.map": "/static/css/main.938c708b.css.map",
+    "main.81be2176.js.map": "/static/js/main.81be2176.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.938c708b.css",
+    "static/js/main.81be2176.js"
+  ]
+}
