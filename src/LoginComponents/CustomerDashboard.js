@@ -30,17 +30,12 @@ export default function CustomerDashboard(props) {
 
     // const details = JSON.parse(localStorage.getItem('customer'));
     useEffect(() => {
-      if (localStorage.getItem("customer")) {
-        const data = JSON.parse(localStorage.getItem("customer"));
-        if (data.accounts[0]) {
-          window.location.href="/customerupdate"} else {
-        setCustomers(data)}
-        console.log("console logged =====>>>>>", data)
-        // setLoading(1)
-        console.log(loading)
-      } else {
-        setLoading(1)
-      }
+      const data = JSON.parse(localStorage.getItem("customer"));
+      // window.location.href="/customerupdate"
+      setCustomers(data)
+      console.log("console logged =====>>>>>", data)
+      // setLoading(1)
+      console.log(loading)
     }, [])
 console.log(customers)
 
