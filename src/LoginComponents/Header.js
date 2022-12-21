@@ -10,9 +10,9 @@ export default function Header() {
                 className="header--image"
             />
             <h2 className="header--title">CRUD MFB</h2>
-            <Link to="/"
+            <Link to="/adminlog"
             style={{textDecoration: 'none', color: 'white', marginRight: '20px',}}>
-            <h4 to="/adminlog" className="header--project">LOG OUT</h4>
+            <h4 to="/adminlog" className="header--project" onClick={localStorage.clear()}>LOG OUT</h4>
             </Link>
             <Link to="/adminlog"
             style={{textDecoration: 'none', color: 'white'}}>
