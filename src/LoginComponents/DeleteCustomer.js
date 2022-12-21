@@ -19,7 +19,7 @@ const DeleteCustomer = () => {
     e.preventDefault();
     console.log(customer);
     // CustomerService.deleteCustomer(customer)
-    axios.delete("http://localhost:8080/api/v1/delete-account", { data: customer, headers: { "Authorization": "***" } })
+    axios.delete("http://SADEYONGO-PC.nibss-plc.com:8080/api/v1/delete-account", { data: customer, headers: { "Authorization": "***" } })
     // console.log(customer)
       .then((response) => {
         console.log("this is response: " + response)

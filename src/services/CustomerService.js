@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1";
+const EMPLOYEE_API_BASE_URL = "http://SADEYONGO-PC.nibss-plc.com:8080/api/v1";
 // https://23bf-80-248-14-174.eu.ngrok.io/api/SignUp/CreateNewAccount
 
 class CustomerService {

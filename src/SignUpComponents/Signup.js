@@ -1,4 +1,5 @@
 import React from "react"
+import toast from "react-hot-toast"
 import { Link, useNavigate } from "react-router-dom"
 import validator from 'validator'
 import CustomerService from "../services/CustomerService";
@@ -50,8 +51,9 @@ export default function Signup() {
     
     function handleSubmit(event) {
         event.preventDefault()
+        if(customer.acctType) {
         if(customer.password === customer.confirmPassword) {
-                fetch('http://localhost:8080/api/v1/create-user', {
+                fetch('http://SADEYONGO-PC.nibss-plc.com:8080/api/v1/create-user', {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
@@ -60,15 +62,26 @@ export default function Signup() {
                     body: JSON.stringify(customer),
                     })
                     .then((response) => response.json())
-                    .then((json) => console.log(json))
-                    .then(localStorage.setItem("customer", JSON.stringify(customer) ))
+                    .then((json) => {
+                        console.log(json)
+                    if (json.status) {
+                        toast.error(json.message)
+                        console.log(json.message)
+                    } else {
+                        localStorage.setItem("customer", JSON.stringify(json))
+                        window.location.href="/userdash"
+                    }
+                    })   
+                    // .then(localStorage.setItem("customer", JSON.stringify(customer) ))
                     .catch((error) => {
+                    toast.error(error)
                     console.log(error)})
-                    .then(navigate("/"))
+                    // .then(navigate("/"))
             } else {
                 setErrorMessage("Password does not match")
     
             }
+        } else {setErrorMessage("Please select account type") }
     }
     
     // React.useEffect(() => {
@@ -162,8 +175,11 @@ export default function Signup() {
                 {errorMessage === '' ? null :
                 <small style={{
                     fontWeight: 'thin',
-                    margin: "10px",
+                    marginLeft: "20px",
+                    justifyContent: "right",
+                    textAlign: "right",
                     color: 'green',
+
                 }}>{errorMessage}</small>}
                 <input 
                     type="password"

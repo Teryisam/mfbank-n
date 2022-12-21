@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Adv from "./Adv";
+import toast from "react-hot-toast"
 import CustomerDashboard from "./CustomerDashboard"
 
 export default function Login() {
@@ -15,6 +16,7 @@ export default function Login() {
     console.log(errorMessage)
 
     const navigate = useNavigate();
+    const showError = () => toast.error('toast error' + errorMessage)
     
     function handleChange(event) {
         const {name, value, type, checked} = event.target
@@ -27,7 +29,7 @@ export default function Login() {
     function handleSubmit(event) {
         event.preventDefault()
 
-            fetch('http://localhost:8080/api/v1/admin/login', {
+            fetch('http://SADEYONGO-PC.nibss-plc.com:8080/api/v1/admin/login', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -41,6 +43,7 @@ export default function Login() {
                 .then(function(data) {
                     if (data.status) {
                         setErrorMessage(data.message)
+                        toast.error(data.message)
                         console.log(data.message)
                     } else {
                     localStorage.clear()
@@ -49,7 +52,9 @@ export default function Login() {
                     console.log(data)}                   
                 })
                 .catch((error) => {
-                    setErrorMessage("User doesn't exist")
+                    // setErrorMessage("User doesn't exist")
+                    toast.error(errorMessage)
+                    // return () => toast.error(errorMessage)
                     console.log("This is the error", error.response)
                 })
 
@@ -134,13 +139,13 @@ export default function Login() {
 
                 <div className="form--a">
 
-                {errorMessage === '' ? null :
-                <small style={{
-                    fontWeight: 'thin',
-                    textAlign: 'center',
-                    justifyContent: 'center',
-                    color: 'red',
-                }}>{errorMessage}</small>}
+                {/* {errorMessage === '' ? null :  */}
+                {/* // <small style={{
+                //     fontWeight: 'thin',
+                //     textAlign: 'center',
+                //     justifyContent: 'center',
+                //     color: 'red',
+                // }}>{errorMessage}</small>} */}
 
                 <Link to="/"
                 style={{textDecoration: 'none', textAlign: 'center'}}>

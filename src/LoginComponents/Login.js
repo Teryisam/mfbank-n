@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, useNavigate } from "react-router-dom"
-import Adv from "./Adv";
+import Adv from "./Adv"
+import toast from "react-hot-toast"
 import CustomerDashboard from "./CustomerDashboard"
 
 export default function Login() {
@@ -34,7 +35,7 @@ export default function Login() {
     function handleSubmit(event) {
         event.preventDefault()
 
-            fetch('http://localhost:8080/api/v1/login', {
+            fetch('http://sadeyongo-pc.nibss-plc.com:8080/api/v1/login', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -45,12 +46,22 @@ export default function Login() {
                 .then((response) => response.json())
                 .then(localStorage.clear())
                 .then((json) =>  {
-                    localStorage.setItem("customer", JSON.stringify(json))
-                    window.location.href="/userdash"
+
+
+                    if (json.status) {
+                        toast.error(json.message)
+                        console.log(json.message)
+                    } else {
+                        localStorage.setItem("customer", JSON.stringify(json))
+                        window.location.href="/userdash"
+                }   
                 })
                 .catch((error) => {
-                console.log(error)});
-                window.location.href="/"
+                console.log(error)
+                
+                });
+                
+                // window.location.href="/"
                 // navigate("/userdash");
         }
 
